@@ -1,7 +1,15 @@
-# odoo_hackathon_12_7
+# Q&A Platform
 
-Problem Statement: StackIt – A Minimal Q&A Forum Platform
+A modern Q&A platform built with React and Firebase.
 
-Team Name: Metaminds
+## Setup
+1. cd frontend
+2. npm install
+3. npm start
 
-Team Leader's Email ID: hetviradadiya.ai@gmail.com
+## Features
+- User authentication
+- Ask and answer questions
+- Rich text editor
+- Voting system
+- Admin panel
