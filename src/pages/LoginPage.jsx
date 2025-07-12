@@ -1,37 +1,36 @@
-// src/pages/RegisterPage.js
+// src/pages/LoginPage.js
+// Example in HomePage.jsx
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext'; // Remove .js extension
+
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../firebase/auth-service';
+import { loginUser } from '../firebase/auth-service';
 
-function RegisterPage() {
+function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleRegister = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-    
     try {
-      await registerUser(email, password);
-      navigate('/'); // Redirect to home after registration
+      await loginUser(email, password);
+      navigate('/'); // Redirect to home after login
     } catch (err) {
-      setError('Failed to register. Please try again.');
-      console.error('Registration error:', err);
+      setError('Failed to login. Please check your credentials.');
+      console.error('Login error:', err);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Create Account</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Login to StackIt</h2>
         
         {error && (
           <div className="mb-4 p-2 bg-red-100 text-red-700 rounded">
@@ -39,7 +38,7 @@ function RegisterPage() {
           </div>
         )}
         
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2" htmlFor="email">
               Email
@@ -55,7 +54,7 @@ function RegisterPage() {
             />
           </div>
           
-          <div className="mb-4">
+          <div className="mb-6">
             <label className="block text-gray-700 mb-2" htmlFor="password">
               Password
             </label>
@@ -70,33 +69,18 @@ function RegisterPage() {
             />
           </div>
           
-          <div className="mb-6">
-            <label className="block text-gray-700 mb-2" htmlFor="confirmPassword">
-              Confirm Password
-            </label>
-            <input
-              id="confirmPassword"
-              type="password"
-              className="w-full px-3 py-2 border rounded"
-              placeholder="••••••••"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
-          
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
           >
-            Create Account
+            Login
           </button>
         </form>
         
         <p className="mt-4 text-center">
-          Already have an account?{' '}
-          <a href="/login" className="text-blue-600 hover:underline">
-            Login
+          Don't have an account?{' '}
+          <a href="/register" className="text-blue-600 hover:underline">
+            Register
           </a>
         </p>
       </div>
@@ -104,4 +88,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default LoginPage;

@@ -1,4 +1,7 @@
-// src/context/AuthContext.js
+// src/context/AuthContext.js4
+// Example in HomePage.jsx
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext'; // Remove .js extension
 import React, { createContext, useEffect, useState } from "react";
 import { setupAuthListener } from "../firebase/auth-service";
 

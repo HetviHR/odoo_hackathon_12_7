@@ -2,6 +2,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
+
 function HomePage() {
   const { currentUser } = useContext(AuthContext);
 
