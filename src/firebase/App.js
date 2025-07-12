@@ -5,6 +5,8 @@ import { AuthProvider } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
+import NotificationBell from "./components/NotificationBell";
+
 
 function App() {
   return (
